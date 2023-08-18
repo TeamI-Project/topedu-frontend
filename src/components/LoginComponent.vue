@@ -18,7 +18,7 @@
         v-model="User.loginPW"
       />
 
-      <button class="loginFormContent" @click="Login()">로그인(test)</button>
+      <button class="loginFormContent" @click="Login()">로그인(develop)</button>
     </div>
   </div>
 </template>
