@@ -35,7 +35,8 @@ export default {
   },
   methods: {
     Login() {
-      console.log(this.User.loginID, this.User.loginPW);
+      console.log(this.User.loginID);
+      console.log(this.User.loginPW);
     },
   },
 };
