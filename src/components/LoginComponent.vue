@@ -1,7 +1,6 @@
 <template>
   <div>
     <img src="../assets/background_logo.png" class="logoImg" />
-
     <div class="loginForm">
       <input
         placeholder="ID"
@@ -17,7 +16,12 @@
         @keyup.enter="Login()"
         v-model="User.loginPW"
       />
+<<<<<<< HEAD
       <button class="loginFormContent" @click="Login()">로그인(develop)</button>
+=======
+
+      <button class="loginFormContent" @click="Login()">로그인</button>
+>>>>>>> develop
     </div>
   </div>
 </template>
@@ -34,8 +38,7 @@ export default {
   },
   methods: {
     Login() {
-      console.log(this.User.loginID);
-      console.log(this.User.loginPW);
+      this.$router.push({ path: "/mainpage" });
     },
   },
 };
@@ -43,22 +46,18 @@ export default {
 
 <style scoped>
 body {
+  padding: 0;
   margin: 0;
 }
-
-div {
-  box-sizing: border-box;
-}
-
 .logoImg {
   width: 100%;
-  max-width: 350px;
+  max-width: 300px;
   margin: auto;
   display: block;
 }
 
 .loginForm {
-  margin-top: 10px;
+  margin-top: 5px;
   width: 100%;
   text-align: center;
 }
