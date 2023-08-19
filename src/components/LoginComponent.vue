@@ -16,12 +16,7 @@
         @keyup.enter="Login()"
         v-model="User.loginPW"
       />
-<<<<<<< HEAD
-      <button class="loginFormContent" @click="Login()">로그인(develop)</button>
-=======
-
       <button class="loginFormContent" @click="Login()">로그인</button>
->>>>>>> develop
     </div>
   </div>
 </template>
