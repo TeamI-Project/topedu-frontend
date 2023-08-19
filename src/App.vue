@@ -1,47 +1,56 @@
 <template>
-  <LoginComponent />
+  <div class="container">
+    <header-component class="header" />
+    <router-view class="main"></router-view>
+    <footer-component class="footer" />
+  </div>
 </template>
 
 <script>
-import LoginComponent from "./components/LoginComponent.vue";
+import FooterComponent from "./components/FooterComponent.vue";
+import HeaderComponent from "./components/HeaderComponent.vue";
 export default {
+  components: { HeaderComponent, FooterComponent },
   name: "App",
   data() {
     return {};
   },
-  components: { LoginComponent },
+  methods: {},
 };
 </script>
 
 <style scoped>
-body {
-  margin: 0;
-}
-
 div {
   box-sizing: border-box;
 }
 
-.black-bg {
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  position: fixed;
-  padding: 20px;
+.container {
+  display: grid;
+  height: 95vh;
+  grid-template-rows: 1fr 7fr 10px 1fr;
+  grid-template-areas:
+    "header header header"
+    " main   main   main "
+    "   .     .      .   "
+    "footer footer footer";
 }
 
-.white-bg {
-  width: 100%;
-  background: white;
-  border-radius: 8px;
-  padding: 20px;
+.header {
+  grid-area: header;
 }
 
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+.main {
+  grid-area: main;
+}
+
+.footer {
+  grid-area: footer;
+  margin-top: auto;
+}
+
+@media screen and (min-height: 1000px) {
+  .container {
+    height: 95vh;
+  }
 }
 </style>
