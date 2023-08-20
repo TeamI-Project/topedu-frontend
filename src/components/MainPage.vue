@@ -1,6 +1,6 @@
 <template>
-  <div class="container">
-    <div class="header">
+  <div class="mainBox">
+    <div class="userInfo">
       <div class="search">
         <input
           placeholder="학생명을 입력하세요"
@@ -14,12 +14,16 @@
         <button>학생 신규등록</button>
       </div>
     </div>
-    <div class="main"></div>
+    <div class="mainContent">
+      <data-table></data-table>
+    </div>
   </div>
 </template>
 
 <script>
+import DataTable from './DataTable.vue';
 export default {
+  components: { DataTable },
   data() {
     return {
       userNameSearch: "",
@@ -34,44 +38,7 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  display: grid;
-  grid-template-rows: 2fr 9fr;
-  grid-template-areas:
-    "header header header"
-    " main   main   main ";
-  width: 85%;
-  height: 110%;
-  background: rgba(223, 209, 185, 0.2);
-  border-radius: 25px;
-  margin: auto;
-  margin-top: 10px;
-  z-index: 1;
-}
-
-.container button {
-  cursor: pointer;
-}
-.header {
-  grid-area: header;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: sticky;
-  top: 0;
-  padding-left: 15px;
-  padding-right: 30px;
-}
-
-.search {
-  display: flex;
-  align-items: center;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 25px;
-  height: 80px;
-  padding-right: 10px;
-}
+@import "../assets/css/MainCommonStyle.css";
 
 .search button {
   background: #d9d9d9bd;
@@ -118,18 +85,8 @@ export default {
   margin-right: 5px;
 }
 
-.main {
-  grid-area: main;
-}
-
-@media screen and (max-width: 1280px) {
-  .container {
-    width: 90%;
-  }
-}
-
 @media screen and (max-width: 767px) {
-  .header {
+  .userInfo {
     padding-left: 10px;
     padding-right: 15px;
   }
@@ -152,7 +109,6 @@ export default {
 }
 
 @media screen and (max-width: 500px) {
-
   .teacherReg {
     margin-right: 0px;
     margin-bottom: 2px;

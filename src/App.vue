@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="containerBody" row no-gutters>  
     <header-component class="header" />
     <router-view class="main"></router-view>
     <footer-component class="footer" />
@@ -9,6 +9,7 @@
 <script>
 import FooterComponent from "./components/FooterComponent.vue";
 import HeaderComponent from "./components/HeaderComponent.vue";
+
 export default {
   components: { HeaderComponent, FooterComponent },
   name: "App",
@@ -24,7 +25,11 @@ div {
   box-sizing: border-box;
 }
 
-.container {
+html {
+  margin: 0;
+}
+
+.containerBody {
   display: grid;
   height: 95vh;
   grid-template-rows: 1fr 7fr 10px 1fr;
@@ -49,7 +54,7 @@ div {
 }
 
 @media screen and (min-height: 1000px) {
-  .container {
+  .containerBody {
     height: 95vh;
   }
 }
