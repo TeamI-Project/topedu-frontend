@@ -15,13 +15,14 @@
       </div>
     </div>
     <div class="mainContent">
-      <data-table></data-table>
+      <DataTable v-model:userNameSearch="userNameSearch" />
     </div>
   </div>
 </template>
 
 <script>
-import DataTable from './DataTable.vue';
+import DataTable from "./DataTable.vue";
+
 export default {
   components: { DataTable },
   data() {
@@ -83,6 +84,12 @@ export default {
 
 .teacherReg {
   margin-right: 5px;
+}
+
+.mainContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media screen and (max-width: 767px) {
