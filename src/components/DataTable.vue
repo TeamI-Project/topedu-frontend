@@ -12,18 +12,11 @@
       :search="userNameSearch"
     >
       <!-- 테이블 헤더(Header) -->
-      <template v-slot:headers="{ columns, isSorted, getSortIcon, toggleSort }">
+      <template v-slot:headers="{ columns }">
         <tr>
           <template v-for="column in columns" :key="column.key">
             <td class="tableHeader">
-              <span
-                class="mr-2 cursor-pointer"
-                @click="() => toggleSort(column)"
-                >{{ column.title }}</span
-              >
-              <template v-if="isSorted(column)">
-                <v-icon :icon="getSortIcon(column)"></v-icon>
-              </template>
+              <span class="mr-2 cursor-pointer">{{ column.title }}</span>
             </td>
           </template>
         </tr>
