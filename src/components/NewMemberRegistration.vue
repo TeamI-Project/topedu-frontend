@@ -32,7 +32,7 @@
 <script>
 export default {
     created() {
-        /* component 로딩 시 학생인지 선생님인지 구분함 */
+        /* component 로딩 시 학생인지 선생님인지 구분 */
         this.memberSep = this.$route.params.member;
         this.memberSep == "teacher" ?
             (this.member = "선생님") :
