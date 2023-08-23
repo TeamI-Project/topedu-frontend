@@ -13,6 +13,19 @@
             <button @click="RegistMember('선생님')">선생님 등록</button>
         </div>
     </div>
+    <div class="mainContent" v-else-if="member == '학생'">
+        <div class="imgDiv">
+            <img :src=imgUrl>
+            <input @change="uploadImg" accept="image/*" type="file" id="file" />
+            <label for="file">학생사진 추가</label>
+        </div>
+        <input placeholder="ID를 입력하세요" />
+        <input placeholder="이름을 입력하세요" />
+        <div class="selctBtn">
+            <button @click="RoutingComponent('MainPage')">취소</button>
+            <button @click="RegistMember('학생')">학생 등록</button>
+        </div>
+    </div>
 </div>
 </template>
 
@@ -30,6 +43,7 @@ export default {
             memberSep: undefined,
             checkedValues: true,
             member: "",
+            imgUrl: undefined,
         };
     },
     methods: {
@@ -44,12 +58,50 @@ export default {
             alert(`신규${member} 등록이 완료되었습니다.`);
             this.RoutingComponent("MainPage");
         },
+        /* 업로드한 이미지를 보여주는 함수 */
+        uploadImg(event) {
+            if (this.imgUrl) URL.revokeObjectURL(this.imgUrl); // 기존 이미지 메모리 할당 해제
+            let img = event.target.files[0];
+            /* 이미지 파일이 아닐 시 거부 문구 출력 */
+            (img.type).includes('image') ? this.imgUrl = URL.createObjectURL(img) : alert('이미지 파일만 업로드 가능합니다');
+        },
     },
 };
 </script>
 
 <style scoped>
 @import "../assets/css/MainCommonStyle.css";
+
+.imgDiv {
+    display: flex;
+    flex-direction: column;
+    gap: 7px 0px;
+    align-items: center;
+}
+
+.imgDiv img {
+    width: 100px;
+    border-radius: 70%;
+}
+
+.imgDiv label {
+    display: grid;
+    width: 175px;
+    height: 45px;
+    background: #F9F6F1;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    border-radius: 25px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    color: rgba(0, 0, 0, 0.6);
+    place-content: center;
+}
+
+.imgDiv input {
+    display: none;
+}
 
 .selctBtn button {
     width: 180px;
