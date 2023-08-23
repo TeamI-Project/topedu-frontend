@@ -2,7 +2,7 @@
 <div class="mainBox">
     <div class="userInfo">
         <div class="search">
-            <input placeholder="학생명을 입력하세요" v-model="userNameSearch" />
+            <input placeholder="검색어를 입력하세요" v-model="userNameSearch" />
 
             <button>검색</button>
         </div>
