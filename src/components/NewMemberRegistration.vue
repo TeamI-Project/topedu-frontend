@@ -149,6 +149,12 @@ export default {
     height: 100%;
 }
 
+@media screen and (max-width: 1024px) {
+    .mainContent input {
+        width: 50%;
+    }
+}
+
 @media screen and (max-width: 767px) {
     .userInfo {
         padding-left: 10px;
@@ -156,7 +162,16 @@ export default {
     }
 
     .search {
-        margin-left: 0;
+        margin: auto;
+    }
+    .mainContent input {
+        width: 70%;
+    }
+    .mainContent {
+        gap: 20px 0px;
+    }
+    .selctBtn button {
+        width: 135px;
     }
 }
 </style>
