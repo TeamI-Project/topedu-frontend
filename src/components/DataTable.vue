@@ -171,6 +171,11 @@ export default {
     color: black;
 }
 
+.tableRow:hover {
+    font-size: 15px;
+    font-weight: 600;
+}
+
 .tableRow td {
     border: 1px solid #828282;
 }

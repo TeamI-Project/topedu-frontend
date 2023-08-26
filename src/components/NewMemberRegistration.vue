@@ -85,6 +85,7 @@ export default {
 }
 
 .imgDiv label {
+    cursor: pointer;
     display: grid;
     width: 175px;
     height: 45px;
@@ -97,6 +98,11 @@ export default {
     font-size: 18px;
     color: rgba(0, 0, 0, 0.6);
     place-content: center;
+}
+
+.imgDiv label:hover {
+    background: #bab5ae;
+    color: white;
 }
 
 .imgDiv input {
@@ -112,6 +118,11 @@ export default {
     color: #4c4c4c;
     font-size: 19px;
     font-weight: 600;
+}
+
+.selctBtn button:hover {
+    background: #605b5bbd;
+    color: white;
 }
 
 .search {

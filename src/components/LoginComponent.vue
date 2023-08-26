@@ -79,8 +79,12 @@ body {
     text-align: center;
     justify-content: center;
     color: #ffffff;
-    background: rgba(23, 61, 114, 0.9);
+    background: rgba(23, 61, 114, 0.85);
     cursor: pointer;
+}
+
+.loginForm button:hover {
+    background-color: rgb(9 30 59 / 94%)
 }
 
 @media screen and (max-width: 1280px) {

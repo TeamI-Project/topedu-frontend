@@ -54,11 +54,15 @@ header {
 .ul button {
     width: 80px;
     height: 40px;
-    background: #2e5080;
+    background: rgba(23, 61, 114, 0.85);
     border-radius: 8px;
     border: none;
     color: white;
     font-size: 14px;
+}
+
+.ul button:hover {
+    background-color: rgb(9 30 59 / 94%)
 }
 
 .ul h4 {

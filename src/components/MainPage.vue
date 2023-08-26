@@ -69,6 +69,11 @@ export default {
     font-size: 16px;
 }
 
+.search button:hover {
+    background: #605b5bbd;
+    color: white;
+}
+
 .search input {
     padding-left: 10px;
     height: 100%;
@@ -101,6 +106,11 @@ export default {
     font-size: 17px;
     font-weight: 600;
     line-height: 18px;
+}
+
+.registration button:hover {
+    background: #605b5bbd;
+    color: white;
 }
 
 .teacherReg {
