@@ -146,7 +146,12 @@ export default {
         },
         /* 테이블 행 클릭 시 이벤트리스너 */
         handleClick(items) {
-            console.log(items.columns);
+            this.$router.push({
+                name: "StudentDetailPage",
+                params: {
+                    id: items.columns.id,
+                },
+            });
         },
     },
 };
@@ -169,6 +174,11 @@ export default {
     font-weight: 400;
     font-size: 14px;
     color: black;
+}
+
+.tableRow:hover {
+    font-size: 15px;
+    font-weight: 600;
 }
 
 .tableRow td {

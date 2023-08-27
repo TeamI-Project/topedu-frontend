@@ -59,6 +59,18 @@ export default {
 <style scoped>
 @import "../assets/css/MainCommonStyle.css";
 
+@media(hover: hover) and (pointer: fine) {
+    .registration button:hover {
+        background: #605b5bbd;
+        color: white;
+    }
+
+    .search button:hover {
+        background: #605b5bbd;
+        color: white;
+    }
+}
+
 .search button {
     background: #d9d9d9bd;
     border-radius: 25px;

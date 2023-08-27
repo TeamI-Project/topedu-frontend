@@ -72,6 +72,18 @@ export default {
 <style scoped>
 @import "../assets/css/MainCommonStyle.css";
 
+@media(hover: hover) and (pointer: fine) {
+    .imgDiv label:hover {
+        background: #bab5ae;
+        color: white;
+    }
+
+    .selctBtn button:hover {
+        background: #605b5bbd;
+        color: white;
+    }
+}
+
 .imgDiv {
     display: flex;
     flex-direction: column;
@@ -85,6 +97,7 @@ export default {
 }
 
 .imgDiv label {
+    cursor: pointer;
     display: grid;
     width: 175px;
     height: 45px;
@@ -149,6 +162,12 @@ export default {
     height: 100%;
 }
 
+@media screen and (max-width: 1024px) {
+    .mainContent input {
+        width: 50%;
+    }
+}
+
 @media screen and (max-width: 767px) {
     .userInfo {
         padding-left: 10px;
@@ -156,7 +175,19 @@ export default {
     }
 
     .search {
-        margin-left: 0;
+        margin: auto;
+    }
+
+    .mainContent input {
+        width: 70%;
+    }
+
+    .mainContent {
+        gap: 20px 0px;
+    }
+
+    .selctBtn button {
+        width: 135px;
     }
 }
 </style>
