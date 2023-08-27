@@ -2,6 +2,7 @@ import { createWebHistory, createRouter } from "vue-router";
 import LoginComponent from './components/LoginComponent.vue';
 import MainPage from './components/MainPage.vue';
 import NewMemberRegistration from './components/NewMemberRegistration.vue';
+import StudentDetailPage from './components/StudentDetailPage.vue';
 
 const routes = [
     {
@@ -18,6 +19,11 @@ const routes = [
         path: "/newmemberregistration/:member",
         name: "NewMemberRegistration",
         component: NewMemberRegistration,
+    },
+    {
+        path: "/studentdetailpage/:id",
+        name: "StudentDetailPage",
+        component: StudentDetailPage,
     }
 ];
 
