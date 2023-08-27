@@ -59,6 +59,18 @@ export default {
 <style scoped>
 @import "../assets/css/MainCommonStyle.css";
 
+@media(hover: hover) and (pointer: fine) {
+    .registration button:hover {
+        background: #605b5bbd;
+        color: white;
+    }
+
+    .search button:hover {
+        background: #605b5bbd;
+        color: white;
+    }
+}
+
 .search button {
     background: #d9d9d9bd;
     border-radius: 25px;
@@ -67,11 +79,6 @@ export default {
     border: none;
     font-weight: 600;
     font-size: 16px;
-}
-
-.search button:hover {
-    background: #605b5bbd;
-    color: white;
 }
 
 .search input {
@@ -106,11 +113,6 @@ export default {
     font-size: 17px;
     font-weight: 600;
     line-height: 18px;
-}
-
-.registration button:hover {
-    background: #605b5bbd;
-    color: white;
 }
 
 .teacherReg {

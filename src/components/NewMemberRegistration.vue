@@ -72,6 +72,18 @@ export default {
 <style scoped>
 @import "../assets/css/MainCommonStyle.css";
 
+@media(hover: hover) and (pointer: fine) {
+    .imgDiv label:hover {
+        background: #bab5ae;
+        color: white;
+    }
+
+    .selctBtn button:hover {
+        background: #605b5bbd;
+        color: white;
+    }
+}
+
 .imgDiv {
     display: flex;
     flex-direction: column;
@@ -100,11 +112,6 @@ export default {
     place-content: center;
 }
 
-.imgDiv label:hover {
-    background: #bab5ae;
-    color: white;
-}
-
 .imgDiv input {
     display: none;
 }
@@ -118,11 +125,6 @@ export default {
     color: #4c4c4c;
     font-size: 19px;
     font-weight: 600;
-}
-
-.selctBtn button:hover {
-    background: #605b5bbd;
-    color: white;
 }
 
 .search {
@@ -175,12 +177,15 @@ export default {
     .search {
         margin: auto;
     }
+
     .mainContent input {
         width: 70%;
     }
+
     .mainContent {
         gap: 20px 0px;
     }
+
     .selctBtn button {
         width: 135px;
     }
