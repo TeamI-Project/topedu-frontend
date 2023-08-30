@@ -5,13 +5,12 @@
     <div class="userInfo">
         <div class="studentInfo">
             <img src="../assets/background_logo.png">
-            <h1>손배준</h1>
-            <p>모라점</p>
+            <h1>{{studentBasicInfo.name}}</h1>
+            <p>{{studentBasicInfo.branch}}</p>
         </div>
 
         <div class="registration">
-            <button @click="DischargedStudent()">학생퇴원</button>
-            <button @click="RoutingComponent('MainPage')">메인페이지</button>
+            <button id="dischargeStudent" @click="studentBasicInfoUpdate()">학생정보 수정</button>
         </div>
     </div>
 
@@ -20,7 +19,8 @@
             <div v-for="(click, idx) in clicked" :key="idx" :class="click.index ? 'cartegoryClicked' : 'cartegory'" @click="changeBtn(idx)">{{ click.title }}</div>
         </div>
         <div class="detailView">
-            detailView
+            <button>수정하기</button>
+            <h5>detailView</h5>
         </div>
     </div>
 </div>
@@ -51,13 +51,31 @@ export default {
                     index: 0,
                 },
             ],
+            studentBasicInfo: {
+                id: "jjuneya0402",
+                name: "손배준",
+                branch: "모라점",
+                src: "src",
+            }
         }
     },
     methods: {
         /* 라우팅 함수 */
-        RoutingComponent(componentName) {
+        studentBasicInfoUpdate() {
+            console.log(this.studentBasicInfo);
             this.$router.push({
-                name: componentName,
+                name: "NewMemberRegistration",
+                params: {
+                    member: "student",
+                },
+                state: { // params가 state로 바뀌었다.
+                    studentBasicInfo: {
+                        id: this.studentBasicInfo.id,
+                        name: this.studentBasicInfo.name,
+                        branch: this.studentBasicInfo.branch,
+                        src: this.studentBasicInfo.src,
+                    },
+                },
             });
         },
         changeBtn(idx) {
@@ -70,19 +88,25 @@ export default {
                 this.clicked[idx].index = 1;
             }
         },
-        DischargedStudent() {
-            console.log(1);
-        }
     },
 }
 </script>
 
 <style scoped>
+.detailView button {
+    width: 151px;
+    height: 40px;
+    background: rgba(46, 80, 128, 0.88);
+    border-radius: 15px;
+    color: white;
+    margin: 15px;
+}
 
 .detailView {
-    padding: 5px;
+    padding: 15px;
     height: 100%;
 }
+
 .registration {
     display: flex;
     gap: 0px 5px;
@@ -105,6 +129,14 @@ export default {
     .registration button:hover {
         background: #605b5bbd;
         color: white;
+    }
+
+    #dischargeStudent:hover {
+        background: red;
+    }
+
+    .detailView button:hover {
+        background: rgb(3 24 54 / 88%);
     }
 }
 
@@ -238,7 +270,7 @@ export default {
     .registration button {
         width: 65px;
         height: 60px;
-        font-size: 11px;
+        font-size: 10px;
     }
 
     .userInfo {

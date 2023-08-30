@@ -19,11 +19,12 @@
             <input @change="uploadImg" accept="image/*" type="file" id="file" />
             <label for="file">학생사진 추가</label>
         </div>
-        <input placeholder="ID를 입력하세요" />
-        <input placeholder="이름을 입력하세요" />
+        <input v-model="studentInfo.id" placeholder="ID를 입력하세요" />
+        <input v-model="studentInfo.name" placeholder="이름을 입력하세요" />
         <div class="selctBtn">
             <button @click="RoutingComponent('MainPage')">취소</button>
-            <button @click="RegistMember('학생')">학생 등록</button>
+            <button @click="RegistMember('학생')">{{ studentBtnName }}</button>
+            <button v-if="dischargeStudentBtnVisible" @click="dischargeStudent()">학생 퇴원</button>
         </div>
     </div>
 </div>
@@ -32,6 +33,15 @@
 <script>
 export default {
     created() {
+        /* state가 있을경우(학생 추가가 아닌 학생 수정일 경우) */
+        if (history.state.studentBasicInfo != undefined) {
+            this.studentInfo.id = history.state.studentBasicInfo.id;
+            this.studentInfo.name = history.state.studentBasicInfo.name;
+            this.studentInfo.branch = history.state.studentBasicInfo.branch;
+            this.studentInfo.src = history.state.studentBasicInfo.src;
+            this.studentBtnName = "정보 수정";
+            this.dischargeStudentBtnVisible = 1;
+        }
         /* component 로딩 시 학생인지 선생님인지 구분 */
         this.memberSep = this.$route.params.member;
         this.memberSep == "teacher" ?
@@ -44,6 +54,14 @@ export default {
             checkedValues: true,
             member: "",
             imgUrl: undefined,
+            studentBtnName: "학생 추가",
+            dischargeStudentBtnVisible: 0,
+            studentInfo: {
+                id: "",
+                name: "",
+                branch: "",
+                src: "",
+            }
         };
     },
     methods: {
@@ -65,6 +83,9 @@ export default {
             /* 이미지 파일이 아닐 시 거부 문구 출력 */
             (img.type).includes('image') ? this.imgUrl = URL.createObjectURL(img) : alert('이미지 파일만 업로드 가능합니다');
         },
+        dischargeStudent() {
+
+        }
     },
 };
 </script>
