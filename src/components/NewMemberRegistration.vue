@@ -23,6 +23,9 @@
         </div>
         <input v-model="studentInfo.id" placeholder="ID를 입력하세요" />
         <input v-model="studentInfo.name" placeholder="이름을 입력하세요" />
+        <div class="selectDiv">
+            <v-select v-model="studentInfo.branch" label="지점" density="compact" :items="['사천점', '청솔점', '마산점']" variant="outlined"></v-select>
+        </div>
         <div class="selctBtn">
             <button @click="RoutingComponent('MainPage')">취소</button>
             <button @click="RegistMember('학생')">{{ studentBtnName }}</button>
@@ -91,13 +94,22 @@ export default {
         },
         /* 신규 등록버튼 클릭 이벤트리스너 */
         RegistMember(member) {
-            if (this.pwCheck == this.password) {
-                alert(`신규${member} 등록이 완료되었습니다.`);
-                this.RoutingComponent("MainPage");
-            } else if (this.pwCheck != this.password) {
-                alert("비밀번호가 일치하지 않습니다. 다시 확인 해 주세요.")
+            if (member == '학생') {
+                if (history.state.studentBasicInfo == undefined) {
+                    alert(`신규${member} 등록이 완료되었습니다.`);
+                    this.RoutingComponent("MainPage");
+                } else {
+                    alert(`${member}정보 수정이 완료되었습니다.`);
+                    this.RoutingComponent("MainPage");
+                }
+            } else {
+                if (this.pwCheck == this.password) {
+                    alert(`신규${member} 등록이 완료되었습니다.`);
+                    this.RoutingComponent("MainPage");
+                } else if (this.pwCheck != this.password) {
+                    alert("비밀번호가 일치하지 않습니다. 다시 확인 해 주세요.")
+                }
             }
-
         },
         /* 업로드한 이미지를 보여주는 함수 */
         uploadImg(event) {
@@ -128,8 +140,14 @@ export default {
     }
 }
 
+.selectDiv {
+    width: 30%;
+    height: 10%;
+    margin-top: 15px;
+}
+
 .selctBtn {
-    margin-top: 20px;
+    margin-top: 15px;
 }
 
 #idInput {
@@ -212,7 +230,7 @@ export default {
     font-family: "Inter";
     font-size: 18px;
     padding-left: 10px;
-    margin-top: 20px;
+    margin-top: 15px;
 }
 
 .Empowerment input {
@@ -236,7 +254,8 @@ export default {
         margin: auto;
     }
 
-    .mainContent input {
+    .mainContent input,
+    .selectDiv {
         width: 70%;
     }
 
