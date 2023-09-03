@@ -202,5 +202,13 @@ export default {
         min-width: 0;
         padding: 0px 10px;
     }
+
+    .tableRow td {
+        font-size: 11px;
+    }
+
+    .tableHeader {
+        font-size: 13px;
+    }
 }
 </style>

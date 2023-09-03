@@ -2,6 +2,7 @@
 <div class="mainBox">
     <div class="userInfo">
         <div class="search">신규 {{ member }} 등록</div>
+        <button v-if="dischargeStudentBtnVisible" @click="dischargeStudent()">학생 퇴원</button>
     </div>
 
     <div class="mainContent" v-if="member == '선생님'">
@@ -29,7 +30,6 @@
         <div class="selctBtn">
             <button @click="RoutingComponent('MainPage')">취소</button>
             <button @click="RegistMember('학생')">{{ studentBtnName }}</button>
-            <button v-if="dischargeStudentBtnVisible" @click="dischargeStudent()">학생 퇴원</button>
         </div>
     </div>
 </div>
@@ -138,7 +138,17 @@ export default {
         background: #605b5bbd;
         color: white;
     }
+
+    .userInfo button:hover {
+        background: red;
+        color: white;
+    }
 }
+
+.userInfo button:active {
+        background: red;
+        color: white;
+    }
 
 .selectDiv {
     width: 30%;
@@ -163,6 +173,7 @@ export default {
 
 .imgDiv img {
     width: 100px;
+    max-height: 120px;
     border-radius: 70%;
 }
 
@@ -186,7 +197,7 @@ export default {
     display: none;
 }
 
-.selctBtn button {
+.selctBtn button, .userInfo button {
     width: 180px;
     height: 70px;
     background: #d9d9d9;
@@ -197,6 +208,11 @@ export default {
     font-weight: 600;
 }
 
+.userInfo button {
+    width: 150px;
+    height: 55px;
+    background: #f8dddb;
+}
 .search {
     font-family: "Inter";
     font-style: normal;
@@ -239,7 +255,9 @@ export default {
 }
 
 @media screen and (max-width: 1024px) {
-    .mainContent input {
+
+    .mainContent input,
+    .selectDiv {
         width: 50%;
     }
 }
@@ -251,7 +269,7 @@ export default {
     }
 
     .search {
-        margin: auto;
+        font-size: 17px;
     }
 
     .mainContent input,
@@ -259,12 +277,16 @@ export default {
         width: 70%;
     }
 
-    .mainContent {
-        gap: 20px 0px;
+    .selctBtn button, .userInfo button {
+        width: 135px;
+        font-size: 15px;
+    }
+    .imgDiv {
+        margin-top: 10px;
     }
 
-    .selctBtn button {
-        width: 135px;
+    .selctBtn {
+        margin: 0px 0px 10px 0px;
     }
 }
 </style>

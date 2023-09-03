@@ -19,15 +19,30 @@
             <div v-for="(click, idx) in clicked" :key="idx" :class="click.index ? 'cartegoryClicked' : 'cartegory'" @click="changeBtn(idx)">{{ click.title }}</div>
         </div>
         <div class="detailView">
-            <button>수정하기</button>
-            <h5>detailView</h5>
+            <detail-component-1 :id=studentBasicInfo.id v-if="clicked[0].index" />
+            <detail-component-2 :id=studentBasicInfo.id v-if="clicked[1].index" />
+            <detail-component-3 :id=studentBasicInfo.id v-if="clicked[2].index" />
+            <detail-component-4 :id=studentBasicInfo.id v-if="clicked[3].index" />
+            <detail-component-5 :id=studentBasicInfo.id v-if="clicked[4].index" />
         </div>
     </div>
 </div>
 </template>
 
 <script>
+import DetailComponent1 from './DetailComponent1.vue';
+import DetailComponent2 from './DetailComponent2.vue';
+import DetailComponent3 from './DetailComponent3.vue';
+import DetailComponent4 from './DetailComponent4.vue';
+import DetailComponent5 from './DetailComponent5.vue';
 export default {
+    components: {
+        DetailComponent1,
+        DetailComponent2,
+        DetailComponent3,
+        DetailComponent4,
+        DetailComponent5
+    },
     data() {
         return {
             clicked: [{
@@ -93,18 +108,10 @@ export default {
 </script>
 
 <style scoped>
-.detailView button {
-    width: 151px;
-    height: 40px;
-    background: rgba(46, 80, 128, 0.88);
-    border-radius: 15px;
-    color: white;
-    margin: 15px;
-}
-
 .detailView {
-    padding: 15px;
-    height: 100%;
+    padding: 0px;
+    overflow-y: auto;
+    height: 56vh;
 }
 
 .registration {
@@ -132,11 +139,7 @@ export default {
     }
 
     #dischargeStudent:hover {
-        background: red;
-    }
-
-    .detailView button:hover {
-        background: rgb(3 24 54 / 88%);
+        background: rgb(0, 26, 255);
     }
 }
 

@@ -36,6 +36,7 @@ header {
     border-bottom: 1px solid rgba(0, 0, 0, 0.15);
     max-height: 80px;
     min-height: 70px;
+    z-index: 100;
 }
 
 .ul {
