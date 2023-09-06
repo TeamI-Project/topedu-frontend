@@ -2,7 +2,7 @@
 <div class="mainFrame">
     <div class="section">
         <div class="selectDiv">
-            <v-select @update:modelValue="changeSelect" v-model="selectMonth" label="Month" density="compact" :items=month variant="outlined"></v-select>
+            <v-select @update:modelValue="changeSelect" v-model="selectCartegory" label="cartegory" density="compact" :items=cartegory variant="outlined"></v-select>
         </div>
         <carousel :items-to-show="1">
             <slide v-for="(url, index) in imgUrlList" :key="index">
@@ -50,10 +50,10 @@ export default {
     data() {
         return {
             id: "",
-            selectMonth: "",
+            selectCartegory: "",
             imgUrl: undefined,
             imgUrlList: ['https://thumb.mtstarnews.com/06/2023/09/2023090409301201116_1.jpg/dims/optimize', 'https://thumb.mtstarnews.com/06/2023/09/2023090409301201116_3.jpg/dims/optimize', 'https://cloudfront-ap-northeast-1.images.arcpublishing.com/chosun/4D62EEAQPO32OIH2EXFAVIIUQU.jpg', 'https://thumb.mtstarnews.com/06/2023/09/2023090409301201116_4.jpg/dims/optimize'],
-            month: ["1월 상담지", "2월 상담지", "3월 상담지", "4월 상담지", "5월 상담지", "6월 상담지", "7월 상담지", "8월 상담지", "9월 상담지", "10월 상담지", "11월 상담지", "12월 상담지", ],
+            cartegory: ['SCA', 'CPS', '커리어넷', '식스센스 코칭', '그 외 진로 검사'],
         }
     },
     methods: {
@@ -163,7 +163,7 @@ export default {
 }
 
 .section img {
-    width: 50%;
+    width: 40%;
 }
 
 .cancelBtn {

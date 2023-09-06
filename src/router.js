@@ -6,7 +6,8 @@ import StudentDetailPage from './components/StudentDetailPage.vue';
 import DetailComponent5Update from './components/DetailComponent5Update.vue';
 import DetailComponent4Update from './components/DetailComponent4Update.vue';
 import DetailComponent3Update from './components/DetailComponent3Update.vue';
-
+import DetailComponent2Update from './components/DetailComponent2Update.vue';
+import DetailComponent1Update from './components/DetailComponent1Update.vue';
 
 
 const routes = [
@@ -29,6 +30,16 @@ const routes = [
         path: "/studentdetailpage/:id",
         name: "StudentDetailPage",
         component: StudentDetailPage,
+    },
+    {
+        path: "/DetailComponent1Update",
+        name: "DetailComponent1Update",
+        component: DetailComponent1Update,
+    },
+    {
+        path: "/DetailComponent2Update",
+        name: "DetailComponent2Update",
+        component: DetailComponent2Update,
     },
     {
         path: "/DetailComponent3Update",

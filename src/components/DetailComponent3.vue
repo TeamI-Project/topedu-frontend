@@ -2,26 +2,50 @@
 <div class="detailView3">
     <button @click="modifiedDetailView()">⬇ 수정하기</button>
     <div class="selectDiv">
-        <v-select v-model="selectSeason" label="Season" density="compact" :items=season variant="outlined"></v-select>
+        <v-select @update:modelValue="changeSelect" v-model="selectSeason" label="Season" density="compact" :items=season variant="outlined"></v-select>
     </div>
-    <img v-if="selectSeason.length == 0" src="../assets/background_logo.png">
+    <carousel :items-to-show="1">
+        <slide v-for="(url, index) in imgUrl" :key="index">
+            <img :src=url>
+        </slide>
+
+        <template #addons>
+            <navigation />
+            <pagination />
+        </template>
+    </carousel>
 </div>
 </template>
 
 <script>
+import 'vue3-carousel/dist/carousel.css'
+import {
+    Carousel,
+    Slide,
+    Pagination,
+    Navigation
+} from 'vue3-carousel'
+
 export default {
+    components: {
+        Carousel,
+        Slide,
+        Pagination,
+        Navigation,
+    },
     props: {
         id: String,
     },
     data() {
         return {
             selectSeason: "",
-            season: ["중학교1학년 1학기 1차고사", "중학교1학년 1학기 2차고사", "중학교1학년 2학기 1차고사", "중학교1학년 2학기 2차고사", "중학교2학년 1학기 1차고사", "중학교2학년 1학기 2차고사", "중학교2학년 2학기 1차고사", "중학교2학년 2학기 2차고사", "중학교3학년 1학기 1차고사", "중학교3학년 1학기 2차고사", "중학교3학년 2학기 1차고사", "중학교3학년 2학기 2차고사", "고등학교1학년 1학기 1차고사", "고등학교1학년 1학기 2차고사", "고등학교1학년 2학기 1차고사", "고등학교1학년 2학기 2차고사", "고등학교2학년 1학기 1차고사", "고등학교2학년 1학기 2차고사", "고등학교2학년 2학기 1차고사", "고등학교2학년 2학기 2차고사", "고등학교3학년 1학기 1차고사", "고등학교3학년 1학기 2차고사", "고등학교3학년 2학기 1차고사", "고등학교3학년 2학기 2차고사",  ],
+            imgUrl: ['https://thumb.mtstarnews.com/06/2023/09/2023090409301201116_1.jpg/dims/optimize', 'https://thumb.mtstarnews.com/06/2023/09/2023090409301201116_3.jpg/dims/optimize', 'https://cloudfront-ap-northeast-1.images.arcpublishing.com/chosun/4D62EEAQPO32OIH2EXFAVIIUQU.jpg', 'https://thumb.mtstarnews.com/06/2023/09/2023090409301201116_4.jpg/dims/optimize'],
+            season: ["중학교1학년 1학기 1차고사", "중학교1학년 1학기 2차고사", "중학교1학년 2학기 1차고사", "중학교1학년 2학기 2차고사", "중학교2학년 1학기 1차고사", "중학교2학년 1학기 2차고사", "중학교2학년 2학기 1차고사", "중학교2학년 2학기 2차고사", "중학교3학년 1학기 1차고사", "중학교3학년 1학기 2차고사", "중학교3학년 2학기 1차고사", "중학교3학년 2학기 2차고사", "고등학교1학년 1학기 1차고사", "고등학교1학년 1학기 2차고사", "고등학교1학년 2학기 1차고사", "고등학교1학년 2학기 2차고사", "고등학교2학년 1학기 1차고사", "고등학교2학년 1학기 2차고사", "고등학교2학년 2학기 1차고사", "고등학교2학년 2학기 2차고사", "고등학교3학년 1학기 1차고사", "고등학교3학년 1학기 2차고사", "고등학교3학년 2학기 1차고사", "고등학교3학년 2학기 2차고사", ],
         }
     },
     methods: {
-        changeSelect() {
-            console.log(1);
+        changeSelect(event) {
+            console.log(event);
         },
         modifiedDetailView() {
             this.$router.push({
@@ -68,8 +92,14 @@ export default {
 }
 
 .selectDiv {
-    width: 50%;
-    height: 10%;
-    margin-top: 15px;
+    width: 40%;
+    margin: auto;
+}
+
+@media screen and (max-width: 767px) {
+
+    .selectDiv {
+        width: 85%;
+    }
 }
 </style>

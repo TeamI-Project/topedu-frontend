@@ -2,14 +2,23 @@
 <div class="mainFrame">
     <div class="section">
         <div class="selectDiv">
-            <v-select v-model="selectSeason" label="Season" density="compact" :items=season variant="outlined"></v-select>
+            <v-select @update:modelValue="changeSelect" v-model="selectSeason" label="Season" density="compact" :items=season variant="outlined"></v-select>
         </div>
+        <carousel :items-to-show="1">
+            <slide v-for="(url, index) in imgUrlList" :key="index">
+                <img @click="deleteImg(index)" :src=url>
+            </slide>
+
+            <template #addons>
+                <navigation />
+                <pagination />
+            </template>
+        </carousel>
         <div class="imgDiv">
             <input @change="uploadImg" accept="image/*" type="file" id="file" />
             <label for="file">이미지 업로드</label>
         </div>
         <h4>💡 이미지를 누르면 삭제 됩니다.</h4>
-        <img @click="deleteImg()" :src=imgUrl>
     </div>
     <div class="buttonSection">
         <button class="cancelBtn" @click="cancelUpdate()">취소</button>
@@ -19,7 +28,21 @@
 </template>
 
 <script>
+import 'vue3-carousel/dist/carousel.css'
+import {
+    Carousel,
+    Slide,
+    Pagination,
+    Navigation
+} from 'vue3-carousel'
+
 export default {
+    components: {
+        Carousel,
+        Slide,
+        Pagination,
+        Navigation,
+    },
     created() {
         /* state가 있을경우(학생 추가가 아닌 학생 수정일 경우) */
         this.id = history.state.id;
@@ -29,13 +52,17 @@ export default {
             id: "",
             selectSeason: "",
             imgUrl: undefined,
+            imgUrlList: ['https://thumb.mtstarnews.com/06/2023/09/2023090409301201116_1.jpg/dims/optimize', 'https://thumb.mtstarnews.com/06/2023/09/2023090409301201116_3.jpg/dims/optimize', 'https://cloudfront-ap-northeast-1.images.arcpublishing.com/chosun/4D62EEAQPO32OIH2EXFAVIIUQU.jpg', 'https://thumb.mtstarnews.com/06/2023/09/2023090409301201116_4.jpg/dims/optimize'],
             season: ["중학교1학년 1학기 1차고사", "중학교1학년 1학기 2차고사", "중학교1학년 2학기 1차고사", "중학교1학년 2학기 2차고사", "중학교2학년 1학기 1차고사", "중학교2학년 1학기 2차고사", "중학교2학년 2학기 1차고사", "중학교2학년 2학기 2차고사", "중학교3학년 1학기 1차고사", "중학교3학년 1학기 2차고사", "중학교3학년 2학기 1차고사", "중학교3학년 2학기 2차고사", "고등학교1학년 1학기 1차고사", "고등학교1학년 1학기 2차고사", "고등학교1학년 2학기 1차고사", "고등학교1학년 2학기 2차고사", "고등학교2학년 1학기 1차고사", "고등학교2학년 1학기 2차고사", "고등학교2학년 2학기 1차고사", "고등학교2학년 2학기 2차고사", "고등학교3학년 1학기 1차고사", "고등학교3학년 1학기 2차고사", "고등학교3학년 2학기 1차고사", "고등학교3학년 2학기 2차고사", ],
         }
     },
     methods: {
-        deleteImg() {
+        changeSelect(event) {
+            console.log(event);
+        },
+        deleteImg(index) {
             if (confirm('이미지를 삭제하시겠습니까?')) {
-                this.imgUrl = undefined;
+                this.imgUrlList.splice(index, 1);
             }
         },
         cancelUpdate() {
@@ -61,7 +88,7 @@ export default {
             if (this.imgUrl) URL.revokeObjectURL(this.imgUrl); // 기존 이미지 메모리 할당 해제
             let img = event.target.files[0];
             /* 이미지 파일이 아닐 시 거부 문구 출력 */
-            (img.type).includes('image') ? this.imgUrl = URL.createObjectURL(img) : alert('이미지 파일만 업로드 가능합니다');
+            (img.type).includes('image') ? this.imgUrlList.push(URL.createObjectURL(img)) : alert('이미지 파일만 업로드 가능합니다');
         },
     },
 }
