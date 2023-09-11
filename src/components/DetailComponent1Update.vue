@@ -1,15 +1,19 @@
 <template>
-<div class="black-bg" v-if="engDate == 1">
-    <div class="white-bg">
-        <VDatePicker v-model="date" mode="date" @click="engAdmissionDateSet()" />
-        <button>확인</button>
-    </div>
-</div>
 <div class="mainFrame">
+    <div class="black-bg" v-if="engDate == 1">
+        <div class="white-bg">
+            <VDatePicker v-model="date" mode="date" @click="engAdmissionDateSet(date)" />
+        </div>
+    </div>
+    <div class="black-bg" v-if="mathDate == 1">
+        <div class="white-bg">
+            <VDatePicker v-model="date" mode="date" @click="mathAdmissionDateSet(date)" />
+        </div>
+    </div>
     <div class="detailView1">
         <div>
             <h4>1. 첫레벨</h4>
-            <Table>
+            <table class="table">
                 <tbody>
                     <tr>
                         <td>영어 입학일</td>
@@ -18,13 +22,13 @@
                         <td>수학 입학레벨</td>
                     </tr>
                     <tr>
-                        <td><input @click="engDate = 1" v-model="engAdmissionDate"></td>
+                        <td><input readonly @click="engDate = 1" v-model="engAdmissionDate" placeholder="📅"></td>
                         <td><input></td>
-                        <td><input></td>
+                        <td><input readonly @click="mathDate = 1" v-model="mathAdmissionDate" placeholder="📅"></td>
                         <td><input></td>
                     </tr>
                 </tbody>
-            </Table>
+            </table>
         </div>
         <div>
             <h4>2. 레벨테스트</h4>
@@ -150,7 +154,9 @@ export default {
             id: "",
             imgUrl: undefined,
             engDate: 0,
+            mathDate: 0,
             engAdmissionDate: "",
+            mathAdmissionDate: "",
             date: ref(new Date()),
             consultingSummary: {
                 '친구들과의 관계': '좋음',
@@ -164,8 +170,37 @@ export default {
         }
     },
     methods: {
-        engAdmissionDateSet() {
-            console.log(this.date);
+        engAdmissionDateSet(date) {
+            if (date == null) {
+                console.log(1);
+            } else {
+                this.engDate = 0;
+                let result = '';
+                let a = date.toLocaleDateString("ko-KR");
+                let b = a.split('.');
+                b.map((e, i) => {
+                    e = e.replace(/ /g, '');
+                    i < 2 ? result += `${e}-` : result += e;
+                })
+                this.engAdmissionDate = result;
+            }
+
+        },
+        mathAdmissionDateSet(date) {
+            if (date == null) {
+                console.log(1);
+            } else {
+                let result = '';
+                this.mathDate = 0;
+                let a = date.toLocaleDateString("ko-KR");
+                let b = a.split('.');
+                b.map((e, i) => {
+                    e = e.replace(/ /g, '');
+                    i < 2 ? result += `${e}-` : result += e;
+                })
+                this.mathAdmissionDate = result;
+            }
+
         },
         deleteImg(index) {
             if (confirm('이미지를 삭제하시겠습니까?')) {
@@ -266,37 +301,17 @@ export default {
     }
 }
 
-.cartegoryView {
-    display: flex;
-    flex-direction: row;
-    overflow-x: hidden;
-}
-
-.cartegoryView img {
-    padding: 3px;
-}
-
 .detailView1 img {
     width: 40%;
 }
 
 .detailView1 table {
-    width: 40%;
     border: 1px solid #444444;
 }
 
 .detailView1 td {
     font-size: 0.8em;
     border: 1px solid #444444;
-}
-
-.detailView1 button {
-    width: 151px;
-    height: 40px;
-    background: rgba(46, 80, 128, 0.88);
-    border-radius: 15px;
-    color: white;
-    margin: 15px 0px;
 }
 
 .detailView1 {
@@ -333,8 +348,8 @@ export default {
 
 @media screen and (max-width: 767px) {
 
-    .detailView1 table {
-        width: 100%;
+    .table input {
+        width: 70px;
     }
 
     .detailView1 td {
@@ -344,9 +359,7 @@ export default {
 
 @media screen and (max-width: 1024px) {
 
-    .detailView1 table {
-        width: 80%;
-    }
+    .detailView1 table {}
 }
 
 .cancelBtn {
@@ -378,7 +391,6 @@ export default {
 }
 
 .white-bg {
-    background: white;
     border-radius: 8px;
     padding: 20px;
 }
@@ -386,23 +398,10 @@ export default {
 @media screen and (max-width: 767px) {
     .cancelBtn {
         width: 120px;
-        margin: 15px 0px;
-        margin-right: 10px;
     }
 
     .updateBtn {
         width: 120px;
-        height: 40px;
-        background: rgba(46, 80, 128, 0.88);
-        border-radius: 15px;
-        color: white;
-        margin: 15px 0px;
-    }
-}
-
-@media screen and (max-height: 750px) {
-    .section img {
-        max-height: 350px;
     }
 }
 </style>
