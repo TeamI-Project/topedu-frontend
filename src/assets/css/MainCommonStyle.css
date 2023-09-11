@@ -1,9 +1,9 @@
 .mainBox { display: grid; grid-template-rows: 2fr 9fr; grid-template-areas:
  "userInfo userInfo userInfo"
- " mainContent mainContent mainContent "; width: 85%; height: 110%; background: rgba(223, 209, 185, 0.2); border-radius: 25px; margin: auto; margin-top: 10px; z-index: 1; } 
+ " mainContent mainContent mainContent "; width: 85%; height: 80vh; background: rgba(223, 209, 185, 0.2); border-radius: 25px; margin: auto; margin-top: 10px; z-index: 1; } 
  
  .mainBox button { cursor: pointer; } 
- .userInfo { grid-area: userInfo; border-bottom: 1px solid rgba(0, 0, 0, 0.15); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; padding-left: 15px; padding-right: 30px; } .search { display: flex; align-items: center; border: 1px solid rgba(0, 0, 0, 0.1); border-radius: 25px; height: 80px; padding-right: 10px; margin-left: 10px; } 
+ .userInfo { grid-area: userInfo; border-bottom: 1px solid rgba(0, 0, 0, 0.15); display: flex; justify-content: space-between; align-items: center; top: 0; padding-left: 15px; padding-right: 30px; } .search { display: flex; align-items: center; border: 1px solid rgba(0, 0, 0, 0.1); border-radius: 25px; height: 80px; padding-right: 10px; margin-left: 10px; } 
  .mainContent { grid-area: mainContent; } 
  @media screen and (max-width: 1280px){
  .mainBox { width: 90%; } 

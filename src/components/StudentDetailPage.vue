@@ -1,17 +1,14 @@
 <template>
-<!-- <VCalendar />
-<VDatePicker v-model="date" /> -->
 <div class="mainBox">
     <div class="userInfo">
         <div class="studentInfo">
             <img src="../assets/background_logo.png">
-            <h1>손배준</h1>
-            <p>모라점</p>
+            <h1>{{studentBasicInfo.name}}</h1>
+            <p>{{studentBasicInfo.branch}}</p>
         </div>
 
         <div class="registration">
-            <button @click="DischargedStudent()">학생퇴원</button>
-            <button @click="RoutingComponent('MainPage')">메인페이지</button>
+            <button id="dischargeStudent" @click="studentBasicInfoUpdate()">학생정보 수정</button>
         </div>
     </div>
 
@@ -20,14 +17,30 @@
             <div v-for="(click, idx) in clicked" :key="idx" :class="click.index ? 'cartegoryClicked' : 'cartegory'" @click="changeBtn(idx)">{{ click.title }}</div>
         </div>
         <div class="detailView">
-            detailView
+            <detail-component-1 :id=studentBasicInfo.id v-if="clicked[0].index" />
+            <detail-component-2 :id=studentBasicInfo.id v-if="clicked[1].index" />
+            <detail-component-3 :id=studentBasicInfo.id v-if="clicked[2].index" />
+            <detail-component-4 :id=studentBasicInfo.id v-if="clicked[3].index" />
+            <detail-component-5 :id=studentBasicInfo.id v-if="clicked[4].index" />
         </div>
     </div>
 </div>
 </template>
 
 <script>
+import DetailComponent1 from './DetailComponent1.vue';
+import DetailComponent2 from './DetailComponent2.vue';
+import DetailComponent3 from './DetailComponent3.vue';
+import DetailComponent4 from './DetailComponent4.vue';
+import DetailComponent5 from './DetailComponent5.vue';
 export default {
+    components: {
+        DetailComponent1,
+        DetailComponent2,
+        DetailComponent3,
+        DetailComponent4,
+        DetailComponent5
+    },
     data() {
         return {
             clicked: [{
@@ -51,13 +64,31 @@ export default {
                     index: 0,
                 },
             ],
+            studentBasicInfo: {
+                id: "jjuneya0402",
+                name: "손배준",
+                branch: "모라점",
+                src: "src",
+            }
         }
     },
     methods: {
         /* 라우팅 함수 */
-        RoutingComponent(componentName) {
+        studentBasicInfoUpdate() {
+            console.log(this.studentBasicInfo);
             this.$router.push({
-                name: componentName,
+                name: "NewMemberRegistration",
+                params: {
+                    member: "student",
+                },
+                state: { // params가 state로 바뀌었다.
+                    studentBasicInfo: {
+                        id: this.studentBasicInfo.id,
+                        name: this.studentBasicInfo.name,
+                        branch: this.studentBasicInfo.branch,
+                        src: this.studentBasicInfo.src,
+                    },
+                },
             });
         },
         changeBtn(idx) {
@@ -70,19 +101,17 @@ export default {
                 this.clicked[idx].index = 1;
             }
         },
-        DischargedStudent() {
-            console.log(1);
-        }
     },
 }
 </script>
 
 <style scoped>
-
 .detailView {
-    padding: 5px;
-    height: 100%;
+    padding: 0px;
+    overflow-y: auto;
+    height: 56vh;
 }
+
 .registration {
     display: flex;
     gap: 0px 5px;
@@ -105,6 +134,10 @@ export default {
     .registration button:hover {
         background: #605b5bbd;
         color: white;
+    }
+
+    #dischargeStudent:hover {
+        background: rgb(0, 26, 255);
     }
 }
 
@@ -238,7 +271,7 @@ export default {
     .registration button {
         width: 65px;
         height: 60px;
-        font-size: 11px;
+        font-size: 10px;
     }
 
     .userInfo {
